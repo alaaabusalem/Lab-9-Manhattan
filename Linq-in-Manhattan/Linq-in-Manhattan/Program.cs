@@ -47,10 +47,14 @@ namespace Linq_in_Manhattan
 			Console.WriteLine($"3.we have {countneighborhoodsWithoutDuplicate} neighborhoods without duplicates");
 
 			//Rewrite the queries from above and consolidate all into one single query.
+			int countNeighborhoodsWithoutDuplicate = JsonObj.features
+	.Where(item => item.properties.neighborhood != null && item.properties.neighborhood != "")
+	.GroupBy(item => item.properties.neighborhood)
+	.Count();
+			Console.WriteLine($"4.Find Neighborhoods Count Without Duplicate using one single query and the answer is {countNeighborhoodsWithoutDuplicate}");
 
 			// Rewrite at least one of these questions only using the opposing method (example: Use LINQ Query statements instead of LINQ method calls and vice versa.)
 
-			Console.WriteLine();
 			Console.WriteLine("***Output all of the neighborhoods in this data list using LINQ Query statements");
 			var ListOfneighborhoods=from feature
 									in JsonObj.features
